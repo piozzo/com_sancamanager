@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form name="arascamalla">
+	<fieldset name="DETAILS">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="id_categoria_sportiva"
+			type="IdCategoria"
+			label="COM_SANCAMANAGER_SANCAMANAGER_ID_CATEGORIA_SPORTIVA_LABEL"
+			description="COM_SANCAMANAGER_SANCAMANAGER_ID_CATEGORIA_SPORTIVA_DESC"
+		/>
+		<field
+			name="id_stagione"
+			type="IdStagione"
+			label="COM_SANCAMANAGER_SANCAMANAGER_ID_STAGIONE_LABEL"
+			description="COM_SANCAMANAGER_SANCAMANAGER_ID_STAGIONE_DESC"
+			size="5"
+			class="inputbox"
+		/>
+		<field
+			name="url_foto"
+			type="text"
+			label="COM_SANCAMANAGER_SANCAMANAGER_URL_FOTO_LABEL"
+			description="COM_SANCAMANAGER_SANCAMANAGER_URL_FOTO_DESC"
+			size="40"
+			class="inputbox"
+			default=""
+		/>
+                <field type="spacer" name="myspacer" hr="false" label="" />
+		<field
+			name="descrizione"
+			type="editor"
+			label="COM_SANCAMANAGER_SANCAMANAGER_DESCRIZIONE_LABEL"
+			description="COM_SANCAMANAGER_SANCAMANAGER_DESCRIZIONE_DESC"
+			width="300"
+		/>
+                <field
+			name="ids_persone"
+			type="Giocatori"
+                        value="1"
+			label="COM_SANCAMANAGER_SANCAMANAGER_GIOCATORI_LABEL"
+			description="COM_SANCAMANAGER_SANCAMANAGER_GIOCATORI_DESC"
+		/>
+	</fieldset>
+</form>

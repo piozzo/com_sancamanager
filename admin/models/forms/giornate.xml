@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="INFO_GIORNATA">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="nome"
+			type="text"
+			label="COM_SANCAMANAGER_GIORNATE_NOME_LABEL"
+			description="COM_SANCAMANAGER_GIORNATE_NOME_DESC"
+		/>
+                <field
+                        name="id_torneo"
+                        type="hidden"
+                />
+                <field
+			name="data"
+			type="calendar"
+			label="COM_SANCAMANAGER_GIORNATE_DATA_LABEL"
+			description="COM_SANCAMANAGER_GIORNATE_DATA_DESC"
+                        format="%d-%m-%Y"
+		/>
+                <field
+			name="ora"
+			type="text"
+			label="COM_SANCAMANAGER_GIORNATE_ORA_LABEL"
+			description="COM_SANCAMANAGER_GIORNATE_ORA_DESC"
+		/>
+                <field
+			name="descrizione"
+			type="text"
+			label="COM_SANCAMANAGER_GIORNATE_DESCRIZIONE_LABEL"
+			description="COM_SANCAMANAGER_GIORNATE_DESCRIZIONE_DESC"
+		/>
+        </fieldset>
+</form>

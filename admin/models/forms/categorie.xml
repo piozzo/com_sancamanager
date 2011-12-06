@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="INFO_CATEGORIA">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="descrizione"
+			type="text"
+			label="COM_SANCAMANAGER_CATEGORIE_DESCRIZIONE_LABEL"
+			description="COM_SANCAMANAGER_CATEGORIE_DESCRIZIONE_DESC"
+		/>
+        </fieldset>
+</form>

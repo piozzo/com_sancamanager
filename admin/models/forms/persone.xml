@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="INFO_PERSONE">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="nome"
+			type="text"
+			label="COM_SANCAMANAGER_PERSONE_NOME_LABEL"
+			description="COM_SANCAMANAGER_PERSONE_NOME_DESC"
+		/>
+                <field
+			name="cognome"
+			type="text"
+			label="COM_SANCAMANAGER_PERSONE_COGNOME_LABEL"
+			description="COM_SANCAMANAGER_PERSONE_COGNOME_DESC"
+		/>
+                <field
+			name="data_di_nascita"
+			type="calendar"
+			label="COM_SANCAMANAGER_PERSONE_DATADINASCITA_LABEL"
+			description="COM_SANCAMANAGER_PERSONE_DATADINASCITA_DESC"
+                        format="%d-%m-%Y"
+		/>
+                <field
+			name="id_ruolo"
+			type="IdRuolo"
+			label="COM_SANCAMANAGER_PERSONE_RUOLO_LABEL"
+			description="COM_SANCAMANAGER_PERSONE_RUOLO_DESC"
+		/>
+                <field
+			name="def_img"
+			type="file"
+			label="COM_SANCAMANAGER_PERSONE_RUOLO_LABEL"
+			description="COM_SANCAMANAGER_PERSONE_RUOLO_DESC"
+		/>
+        </fieldset>
+</form>

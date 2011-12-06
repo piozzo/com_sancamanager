@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="INFO_STAGIONE_SPORTIVA">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="descrizione"
+			type="text"
+			label="COM_SANCAMANAGER_STAGIONE_SPORTIVA_DESCRIZIONE_LABEL"
+			description="COM_SANCAMANAGER_STAGIONE_SPORTIVA_DESCRIZIONE_DESC"
+		/>
+                <field
+			name="stagione_corrente"
+			type="checkbox"
+			label="COM_SANCAMANAGER_STAGIONE_SPORTIVA_STAGIONE_CORRENTE_LABEL"
+			description="COM_SANCAMANAGER_STAGIONE_SPORTIVA_STAGIONE_CORRENTE_DESC"
+                        value="1"
+		/>
+                <field
+			name="ids_persone"
+			type="Giocatori"
+			label="COM_SANCAMANAGER_STAGIONE_SPORTIVA_GIOCATORI_LABEL"
+			description="COM_SANCAMANAGER_STAGIONE_SPORTIVA_GIOCATORI_DESC"
+		/>
+                <field
+			name="anno"
+			type="text"
+			label="COM_SANCAMANAGER_STAGIONE_SPORTIVA_ANNO_LABEL"
+			description="COM_SANCAMANAGER_STAGIONE_SPORTIVA_ANNO_DESC"
+		/>
+        </fieldset>
+</form>

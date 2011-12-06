@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="INFO_TORNEO">
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="descrizione"
+			type="text"
+			label="COM_SANCAMANAGER_TORNEO_DESCRIZIONE_LABEL"
+			description="COM_SANCAMANAGER_TORNEO_DESCRIZIONE_DESC"
+		/>
+                <field
+			name="id_categoria_sportiva"
+			type="IdCategoria"
+			label="COM_SANCAMANAGER_TORNEO_ID_CATEGORIA_LABEL"
+			description="COM_SANCAMANAGER_TORNEO_ID_CATEGORIA_DESC"
+                        value="1"
+		/>
+                <field
+			name="id_stagione_sportiva"
+			type="IdStagione"
+			label="COM_SANCAMANAGER_TORNEO_ID_STAGIONE_LABEL"
+			description="COM_SANCAMANAGER_TORNEO_ID_STAGIONE_DESC"
+		/>
+                <field
+			name="ids_squadre"
+			type="SquadreTornei"
+			label="COM_SANCAMANAGER_TORNEO_IDS_SQUADRE_LABEL"
+			description="COM_SANCAMANAGER_TORNEO_IDS_SQUADRE_DESC"
+		/>
+        </fieldset>
+</form>
