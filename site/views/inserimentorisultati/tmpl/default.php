@@ -1,6 +1,8 @@
 <?php
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+include('libraries/sancaLogger/SancaLogger.php');
+SancaLogger::initalize(getcwd()."/logs/com_sancamanager/");
 
 if (!(JFactory::getUser()->id > 0))
         die('FURBONE! DOVE VUOI ANDARE? PUSSA VIA! :P');
@@ -14,6 +16,7 @@ $url = (!empty($_SERVER['HTTPS'])) ? "https://".$_SERVER['SERVER_NAME'].$_SERVER
 //echo('Utente collegato: '.JFactory::getUser()->username) ;
 
 if (JRequest::getVar('salvataggio_risultati')) {
+    SancaLogger::logMessage("Preparazione al salvataggio dei risultati degli incontri del torneo con ID = ".$id_torneo.".", JFactory::getUser()->name);
     $num_giornate = JRequest::getVar('numero_giornate');
     $num_incontri = array();
     $num_incontri = unserialize(JRequest::getVar('numero_incontri'));
@@ -36,6 +39,8 @@ if (JRequest::getVar('salvataggio_risultati')) {
             $db->setQuery((string)$query);
             $result = $db->query();
             
+            SancaLogger::logMessage("Aggiornamento risultati incontro con ID = ".$id_incontro.". ".(string)$query.".", JFactory::getUser()->name);
+            
             if (!$result) {
                 echo((string)$query);
                 die('error in updating match results');
@@ -45,10 +50,12 @@ if (JRequest::getVar('salvataggio_risultati')) {
     ?>
 <div align="center">Dati aggiornati correttamente</div>
 <?php
+    SancaLogger::logMessage("Risultati degli incontri del campionato con ID = ".$id_torneo." aggiornati correttamente.", JFactory::getUser()->name);
 }
 
 if (JRequest::getVar('torneo_selezionato') > 0) {
     $id_torneo = JRequest::getVar('torneo_selezionato');
+    SancaLogger::logMessage("Selezionato il torneo con ID = ".$id_torneo.".", JFactory::getUser()->name);
     
     $query = $db->getQuery(true);
     $query->select('*');
@@ -104,8 +111,8 @@ if (JRequest::getVar('torneo_selezionato') > 0) {
 <form action="<?php echo($url); ?>" method="post" name="form_risultati_campionato" id="risultati-form">
 <table id="tabella_incontri" width="600">
     <thead>
-    <td width="450"><strong>Incontro</strong></td>
-    <td width="150"><strong>Risultato</strong></td>
+    <td width="500"><strong>Incontro</strong></td>
+    <td width="100"><strong>Risultato</strong></td>
     </thead>
     <?php
     foreach ($giornate as $giornata) {
@@ -127,7 +134,7 @@ if (JRequest::getVar('torneo_selezionato') > 0) {
         foreach ($incontri as $incontro) {
             $num_incontri[$i] = count($incontri);
             echo('<tr>');
-            echo('<td width="450"><div class="titolo_incontro_inserimento">'.$teams[$incontro->id_squadra1].' - '.$teams[$incontro->id_squadra2].'</div></td><td width="150"><input type="text" value="'.$incontro->reti_squadra1.'" size="4" name="reti_squadra1_incontro'.$j.'_giornata'.$i.'" />-<input type="text" value="'.$incontro->reti_squadra2.'" name="reti_squadra2_incontro'.$j.'_giornata'.$i.'" size="4" /></td>');
+            echo('<td width="500"><div class="titolo_incontro_inserimento">'.$teams[$incontro->id_squadra1].' - '.$teams[$incontro->id_squadra2].'</div></td><td width="100"><input type="text" value="'.$incontro->reti_squadra1.'" size="4" name="reti_squadra1_incontro'.$j.'_giornata'.$i.'" />-<input type="text" value="'.$incontro->reti_squadra2.'" name="reti_squadra2_incontro'.$j.'_giornata'.$i.'" size="4" /></td>');
             echo('</tr>');
             echo('<input type="hidden" name="idincontro'.$j++.'giornata'.$i.'" value="'.$incontro->id.'" />');
         }
@@ -141,7 +148,7 @@ if (JRequest::getVar('torneo_selezionato') > 0) {
     <input type="submit" value="Salva risultati" />
 </form>
 <?php    
-    
+    SancaLogger::logMessage("Incontri del torneo con ID = ".$id_torneo." caricati con successo.", JFactory::getUser()->name);
 }
 else {
     ?>
@@ -181,5 +188,7 @@ else {
     }
     else
         echo('Nessun torneo memorizzato in archivio');
+    
+    SancaLogger::logMessage("Caricata pagina di scelta campionato per inserimento risultati.", JFactory::getUser()->name);
 }
 ?>
