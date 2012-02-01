@@ -9,6 +9,11 @@ DROP TABLE IF EXISTS `#__sm_squadre_tornei`;
 DROP TABLE IF EXISTS `#__sm_giornate`;
 DROP TABLE IF EXISTS `#__sm_incontri`;
 DROP TABLE IF EXISTS `#__sm_permessi_utenti`;
+DROP TABLE IF EXISTS `#__sm_articoli_gare`;
+DROP TABLE IF EXISTS `#__sm_assoc_articoli_match`;
+DROP TABLE IF EXISTS `#__sm_diritti_aggiornamento_campionati`;
+DROP TABLE IF EXISTS `#__sm_diritti_articoli_gare`;
+
  
 CREATE TABLE `#__sm` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -105,3 +110,32 @@ CREATE  TABLE `#__sm_permessi_utenti` (
   `ids_tornei` INT NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `jos_sm_articoli_gare` (
+  `ID` int(11) NOT NULL auto_increment,
+  `id_gara` int(11) default NULL,
+  `idut_creazione` int(5) default NULL,
+  `idut_modifica` int(5) default NULL,
+  `timestamp_creazione` timestamp NULL default NULL,
+  `timestamp_modifica` timestamp NULL default NULL,
+  `testo_articolo` text,
+  PRIMARY KEY  (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `jos_sm_assoc_articoli_match` (
+  `id_articolo` int(11) NOT NULL,
+  `id_match` int(11) NOT NULL,
+  PRIMARY KEY  (`id_articolo`,`id_match`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `jos_sm_diritti_aggiornamento_campionati` (
+  `id_utente` int(11) NOT NULL default '0',
+  `id_campionato` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`id_utente`,`id_campionato`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `jos_sm_diritti_articoli_gare` (
+  `id_utente` int(11) NOT NULL,
+  `id_campionato` int(11) NOT NULL,
+  PRIMARY KEY  (`id_utente`,`id_campionato`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

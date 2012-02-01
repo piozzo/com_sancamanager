@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="1.6.0" method="upgrade">
+<extension type="component" version="1.7.0" method="upgrade">
  
 	<name>COM_SANCAMANAGER</name>
 	<!-- The following elements are optional and free of formatting constraints -->
@@ -37,20 +37,23 @@
 		</schemas>
 	</update>
         
-        <files folder="site">
+    <files folder="site">
 		<filename>index.html</filename>
 		<filename>sancamanager.php</filename>
 		<filename>controller.php</filename>
 		<folder>views</folder>
-                <folder>images</folder>
-                <folder>css</folder>
+        <folder>images</folder>
+        <folder>css</folder>
 	</files>
 		
-	
+	<media destination="com_sancamanager" folder="media">
+		<filename>index.html</filename>
+		<folder>images</folder>
+	</media>
  
 	<administration>
 		<!-- Administration Menu Section -->
-		<!-- <menu img="../media/com_sancamanager/images/tux-16x16.png">COM_SANCAMANAGER_MENU</menu> -->
+		<menu img="../media/com_sancamanager/images/little_logo.png">COM_SANCAMANAGER_MENU</menu>
 		<!-- Administration Main File Copy Section -->
 		<!-- Note the folder attribute: This attribute describes the folder
 			to copy FROM in the package to install therefore files copied
@@ -60,7 +63,7 @@
 			<filename>index.html</filename>
 			<filename>sancamanager.php</filename>
 			<filename>controller.php</filename>
-                        <filename>config.xml</filename>
+            <filename>config.xml</filename>
 			<filename>access.xml</filename>
 			<!-- views files section -->
 			<folder>views</folder>
@@ -69,7 +72,7 @@
 			<folder>controllers</folder>
 			<folder>language</folder>
 			<folder>tables</folder>
-                        <folder>helpers</folder>
+            <folder>helpers</folder>
 		</files>
 		
 		<languages folder="admin">
