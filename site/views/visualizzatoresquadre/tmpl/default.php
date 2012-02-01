@@ -86,86 +86,77 @@ if (JRequest::getVar('team') > 0) {
     ?>
 <div class="titoloSezioneSancamanager"><?php echo($team[0]->descrizione); ?></div>
 <div class="body_squadra">
+    <div id="immagineSquadra">
+        <img src="<?php echo($team[0]->url_foto); ?>" />
+    </div>
+    <div id="listaGiocatori">
+        <?php
+            creaListaGiocatori("Allenatore", "Allentori");
+        ?>
+        <div class="portieri">
+            <div class="titoloPortieri">
+                <h3>PORTIERI</h3>
+            </div>
+            <div class="listaPortieri">
+                <?php
+                // PORTIERI
+                $query = $db->getQuery(true);
+                $query->select('*');
+                $query->from('#__sm_persone AS a');
+                $query->join('left', '#__sm_ruoli AS b ON a.id_ruolo = b.id');
+                $query->where('a.id IN ('.rtrim($team[0]->ids_persone,',').') AND b.descrizione LIKE \'Portiere%\'');
+
+                $db->setQuery((string)$query);
+                $portieri = $db->loadObjectList();
+
+                if (count($portieri) > 0)
+                {
+                    ?>
+
+                <div class="elencoPortieri">
+                    <table width="700" border="0" id="tabellaCategorie">
+                    <?php
+                    $count = 0;
+
+                    foreach ($portieri as $portiere) {
+
+                        if ($count == 0)
+                            echo('<tr>');
+
+                        echo('<td height="50" valign="top">');
+                        echo('<div align="center">');
+
+                        echo('<div><a href="#">'.$portiere->nome.' '.$portiere->cognome.'</a></div>');
+
+                        echo('</div>');
+                        echo('</td>');
+
+                        if ($count == 2) {
+                                echo('</tr>');
+                                $count = -1;
+                        }
+
+                        $count++;
+                    }
+
+                    if ($count == 1)
+                            echo('<td>&nbsp;</td><td>&nbsp;</td></tr>');
+                    else if ($count == 2)
+                            echo('<td>&nbsp;</td></tr>');
+                    ?>
+                    </table>
+                    </div>
+                <div style="clear: both"></div>
+                    <?php
+                }   
+            ?>
+            </div>
+        </div>
+    </div>
 <?php
-    // ALLENATORE
-    $query = $db->getQuery(true);
-    $query->select('*');
-    $query->from('#__sm_persone AS a');
-    $query->join('left', '#__sm_ruoli AS b ON a.id_ruolo = b.id');
-    $query->where('a.id IN ('.rtrim($team[0]->ids_persone,',').') AND b.descrizione LIKE \'Allenatore%\'');
-    
-    $db->setQuery((string)$query);
-    $allenatori = $db->loadObjectList();
-
-    if (count($allenatori) > 0)
-    {
-        ?>
-        <div>
-            <h3>ALLENATORI</h3>
-        </div>
-        <?php
     
     
-        foreach ($allenatori as $allenatore) {
-            echo('<div>'.$allenatore->nome.' '.$allenatore->cognome.'</div>');
-        }
-    }
     
-    // PORTIERI
-    $query = $db->getQuery(true);
-    $query->select('*');
-    $query->from('#__sm_persone AS a');
-    $query->join('left', '#__sm_ruoli AS b ON a.id_ruolo = b.id');
-    $query->where('a.id IN ('.rtrim($team[0]->ids_persone,',').') AND b.descrizione LIKE \'Portiere%\'');
-    
-    $db->setQuery((string)$query);
-    $portieri = $db->loadObjectList();
-    
-    if (count($portieri) > 0)
-    {
-        ?>
-        <div class="titoloPortieri">
-            <h3>PORTIERI</h3>
-        </div>
-    <div style="clear: both"></div>
-    <div class="elencoPortieri">
-        <table width="700" border="0" id="tabellaCategorie">
-        <?php
-    
-    
-        $count = 0;
-    
-        foreach ($portieri as $portiere) {
-            
-            if ($count == 0)
-                echo('<tr>');
-
-            echo('<td height="50" valign="top">');
-            echo('<div align="center">');
-
-            echo('<div><a href="#">'.$portiere->nome.' '.$portiere->cognome.'</a></div>');
-
-            echo('</div>');
-            echo('</td>');
-
-            if ($count == 2) {
-                    echo('</tr>');
-                    $count = -1;
-            }
-
-            $count++;
-        }
-        
-        if ($count == 1)
-                echo('<td>&nbsp;</td><td>&nbsp;</td></tr>');
-        else if ($count == 2)
-                echo('<td>&nbsp;</td></tr>');
-        ?>
-        </table>
-        </div>
-    <div style="clear: both"></div>
-        <?php
-    }   
 
     // DIFENSORI
     $query = $db->getQuery(true);
@@ -409,6 +400,33 @@ else {
                 echo('<td>&nbsp;</td></tr>');
 ?>
 </table>
+<?php
+}
+
+function creaListaGiocatori($ruolo, $ruoloPlurale) {
+    ?>
+    <div class="<?php echo($ruoloPlurale); ?>">
+            <div class="header<?php echo($ruoloPlurale); ?>">
+                <?php echo($ruoloPlurale); ?>
+            </div>
+            <div class="lista<?php echo($ruoloPlurale); ?>">
+                <?php
+                // GIOCATORI
+                $query = $db->getQuery(true);
+                $query->select('*');
+                $query->from('#__sm_persone AS a');
+                $query->join('left', '#__sm_ruoli AS b ON a.id_ruolo = b.id');
+                $query->where('a.id IN ('.rtrim($team[0]->ids_persone,',').') AND b.descrizione LIKE \''.$ruolo.'%\'');
+
+                $db->setQuery((string)$query);
+                $allenatori = $db->loadObjectList();
+
+                foreach ($giocatori as $giocatore) {
+                    echo('<div>'.$giocatore->nome.' '.$giocatore->cognome.'</div>');
+                }
+                ?>   
+            </div>
+        </div>
 <?php
 }
 ?>
